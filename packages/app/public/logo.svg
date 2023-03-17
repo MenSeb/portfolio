@@ -6,12 +6,23 @@
     xmlns:xlink="http://www.w3.org/1999/xlink"
 >
     <defs>
-        <ellipse fill="none" id="orbit" rx="10" ry="5" />
+        <ellipse id="orbit" rx="10" ry="5" />
+        <g id="portfolio">
+            <path d="M-10 -6 h6 v-3 h8 v3 h6 v14 h-20 z" />
+            <path d="M-4 -6 h8 z" />
+            <path d="M-10 5 h20 z" />
+            <path d="M-10 -6 a 10 6 0 0 0 20 0" />
+            <path d="M-1 -1 a 1 1 0 0 1 2 0 v2 a 1 1 0 0 1 -2 0 z" fill="#5fd4f4" />
+        </g>
+        <g id="react">
+            <use xlink:href="#orbit" />
+            <use xlink:href="#orbit" transform="rotate(60)" />
+            <use xlink:href="#orbit" transform="rotate(-60)" />
+        </g>
     </defs>
 
-    <g fill="#5fd4f4" stroke="#5fd4f4">
-        <use xlink:href="#orbit" />
-        <use xlink:href="#orbit" transform="rotate(60)" />
-        <use xlink:href="#orbit" transform="rotate(-60)" />
+    <g fill="none" stroke="#5fd4f4" stroke-linejoin="round">
+        <use xlink:href="#react" stroke-width=".5"/>
+        <use xlink:href="#portfolio" transform="scale(0.3)" />
     </g>
 </svg>
