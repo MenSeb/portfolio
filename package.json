@@ -1,0 +1,81 @@
+{
+  "name": "@menseb/portfolio",
+  "version": "0.0.0",
+  "description": "Portfolio.",
+  "main": "index.js",
+  "repository": "https://github.com/MenSeb/portfolio.git",
+  "author": "Sébastien Menard",
+  "license": "ISC",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional",
+      "@commitlint/config-lerna-scopes"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "scripts": {
+    "check": "prettier --check .",
+    "clean": "yarn clean:build && yarn clean:coverage",
+    "clean:build": "lerna exec rimraf lib dist",
+    "clean:coverage": "rimraf coverage",
+    "commit": "cz",
+    "deploy": "lerna run deploy",
+    "precoverage": "yarn clean:coverage",
+    "coverage": "jest --coverage",
+    "prebuild": "yarn clean:build",
+    "build": "lerna run build",
+    "eslint": "lerna exec eslint -- . --parser-options=project:../../tsconfig.eslint.json --ignore-path ../../.eslintignore",
+    "format": "prettier --write .",
+    "lint": "yarn run eslint --fix",
+    "prepublish": "yarn run build",
+    "publish": "lerna publish",
+    "start": "lerna run start",
+    "test": "lerna exec jest --",
+    "watch": "yarn test --watch"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@commitlint/config-lerna-scopes": "^17.0.2",
+    "@commitlint/prompt-cli": "^17.0.3",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.3.0",
+    "@types/jest": "^29.0.0",
+    "@types/node": "^18.0.6",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "commitizen": "^4.2.5",
+    "coveralls": "^3.1.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jest": "^27.0.0",
+    "eslint-plugin-jest-dom": "^4.0.2",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-testing-library": "^5.5.1",
+    "jest": "^29.0.0",
+    "jest-environment-jsdom": "^29.0.0",
+    "lerna": "^6.0.0",
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rimraf": "^4.0.0",
+    "ts-jest": "^29.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  }
+}

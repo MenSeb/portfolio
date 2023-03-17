@@ -1,0 +1,58 @@
+{
+  "name": "app",
+  "version": "0.0.0",
+  "description": "React app.",
+  "keywords": [
+    "app",
+    "react"
+  ],
+  "author": "MenSeb <sebastien.menard.github@gmail.com>",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "type": "module",
+  "directories": {
+    "lib": "lib",
+    "public": "public",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MenSeb/react-packages-boilerplate.git"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "predeploy": "rimraf dist && yarn build",
+    "deploy": "gh-pages -d dist",
+    "start": "webpack serve --hot --open --mode development",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/MenSeb/react-packages-boilerplate/issues"
+  },
+  "homepage": "https://github.com/MenSeb/react-packages-boilerplate#readme",
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "typings": "lib/app.d.ts",
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.3",
+    "gh-pages": "^5.0.0",
+    "node-sass": "^8.0.0",
+    "react-router-dom": "^6.8.1",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.4.2",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
+  }
+}

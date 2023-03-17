@@ -1,0 +1,45 @@
+name: build
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+      - '**.svg'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - '**.svg'
+
+jobs:
+  build:
+    name: Build
+    strategy:
+      matrix:
+        runs-on: [ubuntu-latest]
+      fail-fast: false
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+
+      - name: Install
+        run: yarn install --prefer-offline
+
+      - name: Lint
+        run: yarn run lint
+
+      - name: Test
+        run: yarn run coverage
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ github.token }}

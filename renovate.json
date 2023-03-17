@@ -1,0 +1,20 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":disableRateLimiting",
+    ":preserveSemverRanges",
+    "schedule:nonOfficeHours"
+  ],
+  "packageRules": [
+    {
+      "automerge": true,
+      "matchUpdateTypes": ["digest", "minor", "patch", "pin"]
+    },
+    {
+      "automerge": true,
+      "matchDepTypes": ["devDependencies"]
+    }
+  ],
+  "timezone": "Canada/Eastern"
+}
