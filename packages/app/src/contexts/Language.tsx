@@ -15,6 +15,10 @@ export const LanguageContext = React.createContext<LanguageState>(
   {} as LanguageState,
 );
 
+export function useLanguageContext(): LanguageState {
+  return React.useContext(LanguageContext);
+}
+
 export function LanguageProvider({
   children,
 }: React.PropsWithChildren): JSX.Element {

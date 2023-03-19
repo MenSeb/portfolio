@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { LanguageContext } from '../contexts';
+import { useLanguageContext } from '../contexts';
 
 export default function Language(): JSX.Element {
-  const { language, toggleLanguage } = React.useContext(LanguageContext);
+  const { language, toggleLanguage } = useLanguageContext();
 
   return (
     <button
