@@ -8,14 +8,14 @@ export default function Language(): JSX.Element {
     <button
       className="language"
       onClick={toggleLanguage}
-      title={`Toggle to ${language} language`}
+      title={`Toggle to ${language.inactive.value} language`}
     >
       <img
         alt="icon language"
         className="language-icon"
         src="../assets/language.svg"
       />
-      <span className="language-text">{language}</span>
+      <span className="language-text">{language.inactive.code}</span>
     </button>
   );
 }
