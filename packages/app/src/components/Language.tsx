@@ -6,16 +6,20 @@ export default function Language(): JSX.Element {
 
   return (
     <button
+      aria-label={`Toggle to language ${language}`}
       className="language"
       onClick={toggleLanguage}
-      title={`Toggle to ${language.inactive.value} language`}
+      title={`Toggle to language ${language}`}
     >
       <img
+        aria-hidden="true"
         alt="icon language"
         className="language-icon"
         src="../assets/language.svg"
       />
-      <span className="language-text">{language.inactive.code}</span>
+      <span aria-hidden="true" className="language-text">
+        {language === 'fr' ? 'en' : 'fr'}
+      </span>
     </button>
   );
 }

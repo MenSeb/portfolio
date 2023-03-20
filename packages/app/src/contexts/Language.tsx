@@ -1,50 +1,43 @@
 import * as React from 'react';
+import * as languages from '../languages';
 
-type Language = {
-  code: string;
-  value: string;
-};
+type Language = keyof typeof languages;
 
 type LanguageToggle = (
   event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
 ) => void;
 
 type LanguageState = {
-  active: Language;
-  inactive: Language;
-};
-
-type LanguageValue = {
-  language: LanguageState;
+  language: Language;
   toggleLanguage: LanguageToggle;
 };
 
-export const languages = [
-  { code: 'fr', value: 'french' },
-  { code: 'en', value: 'english' },
-];
+export const defaultLanguage: Language = 'fr';
 
-export const LanguageContext = React.createContext<LanguageValue>(
-  {} as LanguageValue,
+export const LanguageContext = React.createContext<LanguageState>(
+  {} as LanguageState,
 );
 
-export function useLanguageContext(): LanguageValue {
+export function useLanguageContext(): LanguageState {
   return React.useContext(LanguageContext);
 }
 
 export function LanguageProvider({
   children,
 }: React.PropsWithChildren): JSX.Element {
-  const [language, setLanguage] = React.useState<LanguageState>({
-    active: languages[0],
-    inactive: languages[1],
+  const [language, setLanguage] = React.useState<Language>(() => {
+    const storageLanguage = localStorage.getItem('language') as Language;
+
+    return storageLanguage ? storageLanguage : defaultLanguage;
   });
 
   const toggleLanguage = React.useCallback<LanguageToggle>(() => {
-    setLanguage(({ active, inactive }) => {
-      return { active: inactive, inactive: active };
-    });
+    setLanguage((activeLanguage) => (activeLanguage === 'fr' ? 'en' : 'fr'));
   }, []);
+
+  React.useEffect(() => {
+    localStorage.setItem('language', language);
+  }, [language]);
 
   return (
     <LanguageContext.Provider value={{ language, toggleLanguage }}>
