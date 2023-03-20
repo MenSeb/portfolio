@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg 
+  version="1.1"
+  viewBox="-12 -12 24 24" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+  <defs>
+    <circle id="outline" r="10" />
+    <line id="line" x1="-10" y1="0" x2="10" y2="0" />
+    <path id="curve" d="M-10 0 a 10 5 0 0 0 20 0" />
+  </defs>
+  <g fill="none" stroke="currentColor"> 
+    <use xlink:href="#outline" />
+    <use xlink:href="#line" />
+    <use xlink:href="#line" transform="rotate(90)" />
+    <use xlink:href="#curve" />
+    <use xlink:href="#curve" transform="rotate(90)" />
+    <use xlink:href="#curve" transform="rotate(-90)" />
+    <use xlink:href="#curve" transform="rotate(180)" />
+  </g>
+</svg>

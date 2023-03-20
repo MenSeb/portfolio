@@ -1,0 +1,11 @@
+.language {
+  display: flex;
+
+  &-icon {
+    height: 100%;
+  }
+
+  &-text {
+    text-transform: uppercase;
+  }
+}
