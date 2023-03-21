@@ -14,13 +14,23 @@ type ThemeStore = {
   toggleTheme: ThemeToggle;
 };
 
+type ThemeContext = ThemeStore | undefined;
+
 export const defaultTheme: Theme = 'light';
 
-export const ThemeContext: React.Context<ThemeStore> =
-  React.createContext<ThemeStore>({} as ThemeStore);
+export const ContextTheme: React.Context<ThemeContext> =
+  React.createContext<ThemeContext>(undefined);
+
+export const ErrorThemeContext = new Error(
+  'useThemeContext should be used within ThemeProvider.',
+);
 
 export function useThemeContext(): ThemeStore {
-  return React.useContext<ThemeStore>(ThemeContext);
+  const context = React.useContext<ThemeContext>(ContextTheme);
+
+  if (context === undefined) throw ErrorThemeContext;
+
+  return context;
 }
 
 export function ThemeProvider({
@@ -39,8 +49,8 @@ export function ThemeProvider({
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ContextTheme.Provider value={{ theme, toggleTheme }}>
       {children}
-    </ThemeContext.Provider>
+    </ContextTheme.Provider>
   );
 }
