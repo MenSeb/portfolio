@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react';
 import {
-  defaultTheme,
+  initialThemeState,
   useThemeContext,
   ErrorThemeContext,
   ThemeProvider,
@@ -21,10 +21,10 @@ describe('Context Theme', () => {
     spy.mockRestore();
   });
 
-  it('renders with the default theme as the active theme', () => {
+  it('renders with the initial theme state', () => {
     const { result } = renderThemeHook();
 
-    expect(result.current.theme.active).toBe(defaultTheme);
+    expect(result.current.theme).toEqual(initialThemeState);
   });
 
   it('renders with a function to toggle between themes', () => {
