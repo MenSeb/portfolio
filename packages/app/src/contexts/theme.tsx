@@ -16,7 +16,10 @@ type ThemeStore = {
 
 type ThemeContext = ThemeStore | undefined;
 
-export const defaultTheme: Theme = 'light';
+export const initialThemeState: ThemeState = {
+  active: 'light',
+  inactive: 'dark',
+};
 
 export const ContextTheme: React.Context<ThemeContext> =
   React.createContext<ThemeContext>(undefined);
@@ -36,10 +39,7 @@ export function useThemeContext(): ThemeStore {
 export function ThemeProvider({
   children,
 }: React.PropsWithChildren): JSX.Element {
-  const [theme, setTheme] = React.useState<ThemeState>({
-    active: defaultTheme,
-    inactive: defaultTheme === 'light' ? 'dark' : 'light',
-  });
+  const [theme, setTheme] = React.useState<ThemeState>(initialThemeState);
 
   const toggleTheme = React.useCallback<ThemeToggle>(() => {
     setTheme((theme) => ({
