@@ -75,4 +75,7 @@ describe('Context Theme', () => {
 
     expect(localStorage.getItem(THEME_STORAGE_KEY)).toEqual('dark');
   });
+
+  // 'updates the theme when the user color scheme change'
+  // 'saves the theme when the user color scheme change'
 });
