@@ -12,6 +12,8 @@ function renderThemeHook() {
 }
 
 describe('Context Theme', () => {
+  beforeEach(() => localStorage.clear());
+
   it('throws when used without theme provider', () => {
     const spy = jest.spyOn(console, 'error').mockImplementation();
 
@@ -28,8 +30,6 @@ describe('Context Theme', () => {
     const { result } = renderThemeHook();
 
     expect(result.current.theme).toBe('dark');
-
-    localStorage.clear();
   });
 
   it('loads the user color scheme preference', () => {
@@ -60,5 +60,19 @@ describe('Context Theme', () => {
     act(() => result.current.toggleTheme());
 
     expect(result.current.theme).toEqual('dark');
+  });
+
+  it('saves the theme in local storage on the initial render', () => {
+    renderThemeHook();
+
+    expect(localStorage.getItem(THEME_STORAGE_KEY)).toEqual('light');
+  });
+
+  it('saves the theme in local storage on theme toggle', () => {
+    const { result } = renderThemeHook();
+
+    act(() => result.current.toggleTheme());
+
+    expect(localStorage.getItem(THEME_STORAGE_KEY)).toEqual('dark');
   });
 });

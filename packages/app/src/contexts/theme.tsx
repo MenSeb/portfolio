@@ -40,6 +40,10 @@ export function ThemeProvider({
     setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'));
   }, []);
 
+  React.useEffect(() => {
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+  }, [theme]);
+
   return (
     <ContextTheme.Provider value={{ theme, toggleTheme }}>
       {children}
