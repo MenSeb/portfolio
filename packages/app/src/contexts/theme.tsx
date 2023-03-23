@@ -15,6 +15,8 @@ export const ErrorThemeContext = new Error(
 
 export const THEME_STORAGE_KEY = 'color-scheme';
 
+export const THEME_QUERY_DARK = '(prefers-color-scheme: dark)';
+
 export function useThemeContext(): ThemeStore {
   const context = React.useContext(ContextTheme);
 
@@ -31,7 +33,7 @@ export function ThemeProvider({
 
     if (theme) return theme as Theme;
 
-    return 'light';
+    return window.matchMedia(THEME_QUERY_DARK).matches ? 'dark' : 'light';
   });
 
   const toggleTheme = React.useCallback(() => {

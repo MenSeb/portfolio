@@ -3,6 +3,7 @@ import {
   useThemeContext,
   ErrorThemeContext,
   ThemeProvider,
+  THEME_QUERY_DARK,
   THEME_STORAGE_KEY,
 } from '../../src/contexts';
 
@@ -21,7 +22,7 @@ describe('Context Theme', () => {
     spy.mockRestore();
   });
 
-  it('loads with the theme in local storage', () => {
+  it('loads the theme in local storage', () => {
     localStorage.setItem(THEME_STORAGE_KEY, 'dark');
 
     const { result } = renderThemeHook();
@@ -31,7 +32,21 @@ describe('Context Theme', () => {
     localStorage.clear();
   });
 
-  it('renders with the initial theme state', () => {
+  it('loads the user color scheme preference', () => {
+    window.matchMedia = jest.fn().mockImplementation((query: string) => ({
+      matches: query.includes(THEME_QUERY_DARK),
+    }));
+
+    const { result } = renderThemeHook();
+
+    expect(result.current.theme).toBe('dark');
+  });
+
+  it('renders with the default theme', () => {
+    window.matchMedia = jest.fn().mockImplementation(() => ({
+      matches: false,
+    }));
+
     const { result } = renderThemeHook();
 
     expect(result.current.theme).toEqual('light');
