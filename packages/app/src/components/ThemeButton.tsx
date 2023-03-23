@@ -12,7 +12,7 @@ export default function ThemeButton({
   return (
     <button
       {...props}
-      aria-label={theme.active}
+      aria-label={theme}
       aria-live="polite"
       className="theme-button"
       onClick={toggleTheme}

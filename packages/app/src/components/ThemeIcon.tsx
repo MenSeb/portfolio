@@ -34,7 +34,7 @@ export default function ThemeIcon({ ...props }): JSX.Element {
           A 6 6 0 1 1 0 -8 z"
         />
       </defs>
-      <use xlinkHref={`#${theme.active}`} />
+      <use xlinkHref={`#${theme}`} />
     </svg>
   );
 }
