@@ -3,6 +3,7 @@ import {
   useThemeContext,
   ErrorThemeContext,
   ThemeProvider,
+  THEME_STORAGE_KEY,
 } from '../../src/contexts';
 
 function renderThemeHook() {
@@ -18,6 +19,16 @@ describe('Context Theme', () => {
     }).toThrow(ErrorThemeContext);
 
     spy.mockRestore();
+  });
+
+  it('loads with the theme in local storage', () => {
+    localStorage.setItem(THEME_STORAGE_KEY, 'dark');
+
+    const { result } = renderThemeHook();
+
+    expect(result.current.theme).toBe('dark');
+
+    localStorage.clear();
   });
 
   it('renders with the initial theme state', () => {
