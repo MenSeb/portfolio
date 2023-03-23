@@ -1,6 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
 import {
-  initialThemeState,
   useThemeContext,
   ErrorThemeContext,
   ThemeProvider,
@@ -24,16 +23,16 @@ describe('Context Theme', () => {
   it('renders with the initial theme state', () => {
     const { result } = renderThemeHook();
 
-    expect(result.current.theme).toEqual(initialThemeState);
+    expect(result.current.theme).toEqual('light');
   });
 
   it('renders with a function to toggle between themes', () => {
     const { result } = renderThemeHook();
-    const { theme, toggleTheme } = result.current;
 
-    act(() => toggleTheme());
+    expect(result.current.theme).toEqual('light');
 
-    expect(result.current.theme.active).toBe(theme.inactive);
-    expect(result.current.theme.inactive).toBe(theme.active);
+    act(() => result.current.toggleTheme());
+
+    expect(result.current.theme).toEqual('dark');
   });
 });
