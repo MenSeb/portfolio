@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useThemeContext } from '../contexts';
+import { useThemeContext } from '.';
 
 type ThemeButtonProps = React.PropsWithChildren;
 

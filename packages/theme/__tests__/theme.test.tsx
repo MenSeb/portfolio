@@ -5,7 +5,7 @@ import {
   ThemeProvider,
   THEME_QUERY_DARK,
   THEME_STORAGE_KEY,
-} from '../../src/contexts';
+} from '../src/theme';
 
 const spyAddEventListener = jest.fn();
 const spyRemoveEventListener = jest.fn();
