@@ -44,6 +44,20 @@ export function ThemeProvider({
     localStorage.setItem(THEME_STORAGE_KEY, theme);
   }, [theme]);
 
+  React.useEffect(() => {
+    function updateTheme() {
+      setTheme(window.matchMedia(THEME_QUERY_DARK).matches ? 'dark' : 'light');
+    }
+
+    window.matchMedia(THEME_QUERY_DARK).addEventListener('change', updateTheme);
+
+    return () => {
+      window
+        .matchMedia(THEME_QUERY_DARK)
+        .removeEventListener('change', updateTheme);
+    };
+  }, []);
+
   return (
     <ContextTheme.Provider value={{ theme, toggleTheme }}>
       {children}
