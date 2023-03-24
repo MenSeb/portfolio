@@ -84,6 +84,10 @@ describe('Context Theme', () => {
     act(() => result.current.toggleTheme());
 
     expect(result.current.theme).toEqual('dark');
+
+    act(() => result.current.toggleTheme());
+
+    expect(result.current.theme).toEqual('light');
   });
 
   it('saves the theme in local storage on the initial render', () => {
