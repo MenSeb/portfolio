@@ -28,12 +28,14 @@ export function useThemeContext(): ThemeStore {
 export function ThemeProvider({
   children,
 }: React.PropsWithChildren): JSX.Element {
+  const refMediaQuery = React.useRef(window.matchMedia(THEME_QUERY_DARK));
+
   const [theme, setTheme] = React.useState<Theme>(() => {
     const theme = localStorage.getItem(THEME_STORAGE_KEY);
 
     if (theme) return theme as Theme;
 
-    return window.matchMedia(THEME_QUERY_DARK).matches ? 'dark' : 'light';
+    return refMediaQuery.current.matches ? 'dark' : 'light';
   });
 
   const toggleTheme = React.useCallback(() => {
@@ -46,15 +48,15 @@ export function ThemeProvider({
 
   React.useEffect(() => {
     function updateTheme() {
-      setTheme(window.matchMedia(THEME_QUERY_DARK).matches ? 'dark' : 'light');
+      setTheme(refMediaQuery.current.matches ? 'dark' : 'light');
     }
 
-    window.matchMedia(THEME_QUERY_DARK).addEventListener('change', updateTheme);
+    const { current: mediaQuery } = refMediaQuery;
+
+    mediaQuery.addEventListener('change', updateTheme);
 
     return () => {
-      window
-        .matchMedia(THEME_QUERY_DARK)
-        .removeEventListener('change', updateTheme);
+      mediaQuery.removeEventListener('change', updateTheme);
     };
   }, []);
 
