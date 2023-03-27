@@ -33,7 +33,7 @@ export function ThemeProvider({
   const [theme, setTheme] = React.useState<Theme>(() => {
     const theme = localStorage.getItem(THEME_STORAGE_KEY);
 
-    if (theme) return theme as Theme;
+    if (theme === 'light' || theme === 'dark') return theme;
 
     return refMediaQuery.current.matches ? 'dark' : 'light';
   });
