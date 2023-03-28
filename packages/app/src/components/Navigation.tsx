@@ -11,7 +11,7 @@ type NavigationLabelledby = {
 };
 
 type NavigationProps = (NavigationLabel | NavigationLabelledby) & {
-  children: React.ReactElement | React.ReactElement[];
+  children: React.ReactElement[];
 };
 
 export default function Navigation({
@@ -22,7 +22,11 @@ export default function Navigation({
 }: NavigationProps) {
   return (
     <nav {...props} aria-label={label} aria-labelledby={labelledby}>
-      {children}
+      <ul>
+        {React.Children.map(children, (child, index) => (
+          <li key={index}>{child}</li>
+        ))}
+      </ul>
     </nav>
   );
 }
