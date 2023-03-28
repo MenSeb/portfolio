@@ -4,13 +4,14 @@
     "declarationMap": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "lib": ["es6", "dom"],
-    "module": "commonjs",
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "node",
     "noLib": false,
     "removeComments": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es6"
+    "target": "ESNext"
   },
   "exclude": ["node_modules"]
 }
