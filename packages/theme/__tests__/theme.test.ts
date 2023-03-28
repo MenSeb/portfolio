@@ -1,38 +1,17 @@
 import { act, renderHook } from '@testing-library/react';
+import { useThemeContext } from '../src';
 import {
-  useThemeContext,
-  ErrorThemeContext,
-  ThemeProvider,
+  THEME_CONTEXT_ERROR,
   THEME_QUERY_DARK,
   THEME_STORAGE_KEY,
-} from '../src/theme';
-
-const spyAddEventListener = jest.fn();
-const spyRemoveEventListener = jest.fn();
-
-function defineMatchMedia() {
-  Object.defineProperty(window, 'matchMedia', {
-    writable: true,
-    value: mockMatchMedia(),
-  });
-}
-
-function mockMatchMedia(mediaQuery?: string) {
-  return jest.fn().mockImplementation((query: string) => ({
-    matches: mediaQuery ? query.includes(mediaQuery) : false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(), // Deprecated
-    removeListener: jest.fn(), // Deprecated
-    addEventListener: spyAddEventListener,
-    removeEventListener: spyRemoveEventListener,
-    dispatchEvent: jest.fn(),
-  }));
-}
-
-function renderThemeHook() {
-  return renderHook(() => useThemeContext(), { wrapper: ThemeProvider });
-}
+} from '../src/constants';
+import {
+  defineMatchMedia,
+  mockMatchMedia,
+  renderThemeHook,
+  spyAddEventListener,
+  spyRemoveEventListener,
+} from '.';
 
 describe('Context Theme', () => {
   beforeAll(() => defineMatchMedia());
@@ -47,7 +26,7 @@ describe('Context Theme', () => {
 
     expect(() => {
       renderHook(() => useThemeContext());
-    }).toThrow(ErrorThemeContext);
+    }).toThrow(THEME_CONTEXT_ERROR);
 
     spy.mockRestore();
   });

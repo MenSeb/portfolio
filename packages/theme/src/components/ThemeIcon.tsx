@@ -1,16 +1,11 @@
 import * as React from 'react';
-import { useThemeContext } from '.';
+import { useThemeContext } from '../';
 
 export default function ThemeIcon({ ...props }): JSX.Element {
   const { theme } = useThemeContext();
 
   return (
-    <svg
-      {...props}
-      aria-hidden="true"
-      className="theme-icon"
-      viewBox="-12 -12 24 24"
-    >
+    <svg {...props} aria-hidden="true" viewBox="-12 -12 24 24">
       <defs>
         <path
           id="light"

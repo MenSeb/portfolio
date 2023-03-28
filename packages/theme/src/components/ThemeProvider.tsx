@@ -1,31 +1,9 @@
 import * as React from 'react';
+import ThemeContext from '../contexts';
+import { Theme } from '../types';
+import { THEME_QUERY_DARK, THEME_STORAGE_KEY } from '../constants';
 
-type Theme = 'light' | 'dark';
-
-type ThemeStore = {
-  theme: Theme;
-  toggleTheme: () => void;
-};
-
-export const ContextTheme = React.createContext<ThemeStore | null>(null);
-
-export const ErrorThemeContext = new Error(
-  'useThemeContext should be used within ThemeProvider.',
-);
-
-export const THEME_STORAGE_KEY = 'color-scheme';
-
-export const THEME_QUERY_DARK = '(prefers-color-scheme: dark)';
-
-export function useThemeContext(): ThemeStore {
-  const context = React.useContext(ContextTheme);
-
-  if (context) return context;
-
-  throw ErrorThemeContext;
-}
-
-export function ThemeProvider({
+export default function ThemeProvider({
   children,
 }: React.PropsWithChildren): JSX.Element {
   const refMediaQuery = React.useRef(window.matchMedia(THEME_QUERY_DARK));
@@ -61,8 +39,8 @@ export function ThemeProvider({
   }, []);
 
   return (
-    <ContextTheme.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
-    </ContextTheme.Provider>
+    </ThemeContext.Provider>
   );
 }
