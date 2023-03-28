@@ -14,3 +14,46 @@
 </div>
 
 <hr>
+
+## How to use
+
+You can pass any props to `ThemeButton` and `ThemeIcon` i.e. `className`, `style`, etc.
+
+```jsx
+import {
+  useThemeContext,
+  ThemeButton,
+  ThemeIcon,
+  ThemeProvider,
+} from '@menseb/theme';
+
+export function App() {
+  return (
+    <ThemeProvider>
+      <ThemeButton>
+        <ThemeIcon />
+      </ThemeButton>
+    </ThemeProvider>
+  );
+}
+
+export function Component() {
+  const { theme, toggleTheme } = useThemeContext();
+
+  return (
+    <div>
+      <button onClick={toggleTheme}>Toggle theme</button>
+      <span>Current theme: {theme}</span>
+    </div>
+  );
+}
+```
+
+## How it works
+
+On load, check if theme is stored in localStorage.
+
+- If true, loads theme from localStorage;
+- If false, loads theme from user system preference;
+
+On `toggleTheme` or `MediaQuery onChange`, updates theme and saves to localStorage.
