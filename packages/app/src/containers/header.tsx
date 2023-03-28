@@ -1,16 +1,21 @@
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { Navigation } from '../components';
 
 export default function Header() {
   return (
     <header>
-      <Link to=".">#Logo</Link>
-      <nav>
-        <NavLink to="." end>
-          Home
-        </NavLink>
+      <Link to=".">
+        <img alt="WebFolio icon" src="logo.svg" />
+        <h1>WebFolio</h1>
+      </Link>
+      <Navigation label="primary">
+        <NavLink to=".">Home</NavLink>
         <NavLink to="about">About</NavLink>
-      </nav>
+        <NavLink to="cv">CV</NavLink>
+        <NavLink to="projects">Projects</NavLink>
+        <NavLink to="contact">Contact</NavLink>
+      </Navigation>
     </header>
   );
 }
