@@ -6,8 +6,8 @@ import { Logo, Navigation } from '../components';
 export default function Header(): JSX.Element {
   return (
     <header>
-      <Link to=".">
-        <Logo path="logo.svg" title="WebFolio" />
+      <Link className="logo-link" to=".">
+        <Logo />
       </Link>
       <Navigation label="primary">
         <NavLink to=".">Home</NavLink>
