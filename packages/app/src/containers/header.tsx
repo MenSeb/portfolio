@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { ThemeButton, ThemeIcon } from '@menseb/theme';
 import { Navigation } from '../components';
 
 export default function Header() {
@@ -16,6 +17,9 @@ export default function Header() {
         <NavLink to="projects">Projects</NavLink>
         <NavLink to="contact">Contact</NavLink>
       </Navigation>
+      <ThemeButton>
+        <ThemeIcon />
+      </ThemeButton>
     </header>
   );
 }
