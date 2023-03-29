@@ -1,7 +1,7 @@
 import * as React from 'react';
-import ThemeContext from '../contexts';
-import { Theme } from '../types';
 import { THEME_QUERY_DARK, THEME_STORAGE_KEY } from '../constants';
+import { ThemeContext } from '../context';
+import { Theme } from '../types';
 
 export default function ThemeProvider({
   children,

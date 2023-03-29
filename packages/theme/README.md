@@ -3,7 +3,7 @@
         alt="React Widgets"
         height="250"
         width="250"
-        src="./src/assets/logo.svg"
+        src="logo.svg"
     />
     <h1>
         React Theme
