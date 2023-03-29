@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { ThemeButton, ThemeIcon } from '@menseb/theme';
-import { Navigation } from '../components';
+import { Logo, Navigation } from '../components';
 
 export default function Header() {
   return (
     <header>
       <Link to=".">
-        <img alt="WebFolio icon" src="logo.svg" />
-        <h1>WebFolio</h1>
+        <Logo path="logo.svg" title="WebFolio" />
       </Link>
       <Navigation label="primary">
         <NavLink to=".">Home</NavLink>
