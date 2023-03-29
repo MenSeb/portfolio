@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { ThemeButton, ThemeIcon } from '@menseb/theme';
 import { Logo, Navigation } from '../components';
 
-export default function Header() {
+export default function Header(): JSX.Element {
   return (
     <header>
       <Link to=".">
