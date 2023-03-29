@@ -12,7 +12,7 @@ type NavigationLabelledby = {
 
 type NavigationProps = (NavigationLabel | NavigationLabelledby) & {
   children: React.ReactElement[];
-};
+} & React.HTMLAttributes<HTMLElement>;
 
 export default function Navigation({
   children,

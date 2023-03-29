@@ -9,7 +9,7 @@ export default function Header(): JSX.Element {
       <Link className="logo-link" to=".">
         <Logo />
       </Link>
-      <Navigation label="primary">
+      <Navigation className="navigation" label="primary">
         <NavLink to=".">Home</NavLink>
         <NavLink to="about">About</NavLink>
         <NavLink to="cv">CV</NavLink>
