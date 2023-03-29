@@ -1,0 +1,15 @@
+.theme-button,
+[aria-live='polite'][aria-label] {
+  margin: 1em;
+  height: 50%;
+  cursor: pointer;
+  background: none;
+  border: 1px solid dodgerblue;
+  border-radius: 15%;
+
+  .theme-icon,
+  svg[aria-hidden='true'] {
+    fill: dodgerblue;
+    height: 100%;
+  }
+}

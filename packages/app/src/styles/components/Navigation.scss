@@ -1,0 +1,21 @@
+.navigation {
+  display: flex;
+
+  &[aria-label='primary'] {
+    height: 100%;
+
+    ul {
+      display: flex;
+      align-items: center;
+    }
+
+    li {
+      margin: 1em;
+    }
+
+    a {
+      padding: 1em;
+      color: dodgerblue;
+    }
+  }
+}

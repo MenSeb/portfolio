@@ -1,0 +1,22 @@
+$color-icon: #5fd4f4;
+$color-title: #5fd4f4;
+
+.logo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  &-icon {
+    height: 100%;
+    padding: 0.5em;
+    color: $color-icon;
+  }
+
+  &-link {
+    height: 100%;
+  }
+
+  &-title {
+    color: $color-title;
+  }
+}
