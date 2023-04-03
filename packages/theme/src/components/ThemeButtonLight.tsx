@@ -1,23 +1,21 @@
 import * as React from 'react';
 import { useThemeContext } from '../';
-import ThemeButton, { ThemeButtonProps } from './ThemeButton';
-
-export type ThemeButtonLightProps = Partial<ThemeButtonProps>;
 
 export default function ThemeButtonLight({
   children,
   ...props
-}: ThemeButtonLightProps): JSX.Element {
+}: React.HTMLProps<HTMLButtonElement>): JSX.Element {
   const { theme, setThemeLight } = useThemeContext();
 
   return (
-    <ThemeButton
+    <button
       {...props}
-      click={setThemeLight}
+      aria-pressed={theme === 'light'}
       data-theme="light"
-      pressed={theme === 'light'}
+      onClick={setThemeLight}
+      type="button"
     >
       {children}
-    </ThemeButton>
+    </button>
   );
 }

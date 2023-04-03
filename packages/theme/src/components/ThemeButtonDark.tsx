@@ -1,23 +1,21 @@
 import * as React from 'react';
 import { useThemeContext } from '../';
-import ThemeButton, { ThemeButtonProps } from './ThemeButton';
-
-export type ThemeButtonDarkProps = Partial<ThemeButtonProps>;
 
 export default function ThemeButtonDark({
   children,
   ...props
-}: ThemeButtonDarkProps): JSX.Element {
+}: React.HTMLProps<HTMLButtonElement>): JSX.Element {
   const { theme, setThemeDark } = useThemeContext();
 
   return (
-    <ThemeButton
+    <button
       {...props}
-      click={setThemeDark}
+      aria-pressed={theme === 'dark'}
       data-theme="dark"
-      pressed={theme === 'dark'}
+      onClick={setThemeDark}
+      type="button"
     >
       {children}
-    </ThemeButton>
+    </button>
   );
 }

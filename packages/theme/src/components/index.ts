@@ -1,4 +1,3 @@
-export { default as ThemeButton } from './ThemeButton';
 export { default as ThemeButtonDark } from './ThemeButtonDark';
 export { default as ThemeButtonLight } from './ThemeButtonLight';
 export { default as ThemeButtonToggle } from './ThemeButtonToggle';

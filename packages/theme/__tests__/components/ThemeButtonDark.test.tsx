@@ -4,11 +4,11 @@ import { ThemeButtonDark } from '../../src/components';
 import { THEME_STORAGE_KEY } from '../../src/constants';
 import { createRender, getButton } from '..';
 
-const renderThemeButtonDark = createRender(ThemeButtonDark);
+const renderButtonDark = createRender(ThemeButtonDark);
 
 describe('<ThemeButtonDark />', () => {
   it('renders with attribute data-theme to dark', () => {
-    renderThemeButtonDark();
+    renderButtonDark();
 
     expect(getButton()).toHaveAttribute('data-theme', 'dark');
   });
@@ -16,19 +16,25 @@ describe('<ThemeButtonDark />', () => {
   it('renders with aria-pressed to true when theme is dark', () => {
     localStorage.setItem(THEME_STORAGE_KEY, 'dark');
 
-    renderThemeButtonDark();
+    renderButtonDark();
 
     expect(getButton()).toHaveAttribute('aria-pressed', 'true');
   });
 
   it('renders with aria-pressed to false when theme is light', () => {
-    renderThemeButtonDark();
+    renderButtonDark();
 
     expect(getButton()).toHaveAttribute('aria-pressed', 'false');
   });
 
   it('renders with click handler to set the theme to dark', async () => {
-    renderThemeButtonDark();
+    renderButtonDark();
+
+    await act(async () => {
+      await userEvent.click(getButton());
+    });
+
+    expect(getButton()).toHaveAttribute('aria-pressed', 'true');
 
     await act(async () => {
       await userEvent.click(getButton());

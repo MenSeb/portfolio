@@ -37,5 +37,11 @@ describe('<ThemeButtonToggle />', () => {
     });
 
     expect(getButton()).toHaveAttribute('data-theme', 'dark');
+
+    await act(async () => {
+      await userEvent.click(getButton());
+    });
+
+    expect(getButton()).toHaveAttribute('data-theme', 'light');
   });
 });
