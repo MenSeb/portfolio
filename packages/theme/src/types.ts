@@ -6,13 +6,3 @@ export type ThemeStore = {
   setThemeLight: () => void;
   toggleTheme: () => void;
 };
-
-export type Label = {
-  label?: string;
-  labelledby?: never;
-};
-
-export type Labelledby = {
-  label?: never;
-  labelledby?: string;
-};
