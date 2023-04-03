@@ -1,6 +1,6 @@
 {
   "name": "@menseb/portfolio",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Portfolio.",
   "main": "index.js",
   "repository": "https://github.com/MenSeb/portfolio.git",
