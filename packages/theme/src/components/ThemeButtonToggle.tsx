@@ -8,14 +8,14 @@ export default function ThemeButtonToggle({
   children,
   ...props
 }: ThemeButtonToggleProps): JSX.Element {
-  const { defaultTheme, theme, toggleTheme } = useThemeContext();
+  const { theme, toggleTheme } = useThemeContext();
 
   return (
     <ThemeButton
       {...props}
       click={toggleTheme}
       data-theme={theme}
-      pressed={theme !== defaultTheme}
+      pressed={theme === 'dark'}
     >
       {children}
     </ThemeButton>

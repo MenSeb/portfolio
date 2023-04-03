@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { Theme } from '../types';
 import { ThemeContext } from '../context';
-import {
-  THEME_DEFAULT,
-  THEME_QUERY_DARK,
-  THEME_STORAGE_KEY,
-} from '../constants';
+import { THEME_QUERY_DARK, THEME_STORAGE_KEY } from '../constants';
 
 export type ThemeProviderProps = React.PropsWithChildren & {
   defaultTheme?: Theme;
@@ -13,7 +9,6 @@ export type ThemeProviderProps = React.PropsWithChildren & {
 
 export default function ThemeProvider({
   children,
-  defaultTheme = THEME_DEFAULT,
 }: ThemeProviderProps): JSX.Element {
   const refMediaQuery = React.useRef(window.matchMedia(THEME_QUERY_DARK));
 
@@ -53,10 +48,9 @@ export default function ThemeProvider({
   return (
     <ThemeContext.Provider
       value={{
-        defaultTheme,
+        theme,
         setThemeDark,
         setThemeLight,
-        theme,
         toggleTheme,
       }}
     >
