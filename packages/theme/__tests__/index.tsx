@@ -61,16 +61,12 @@ export function getButton() {
   return screen.getByRole('button');
 }
 
-export function getIcon(hidden?: boolean) {
-  return getIconPath(hidden).closest('svg');
+export function getIcon(container: HTMLElement) {
+  return container.querySelector('svg');
 }
 
-export function getIconPath(hidden = true) {
-  return screen.getByRole('presentation', { hidden });
-}
-
-export function getImage() {
-  return screen.getByRole('img');
+export function getIconPath(container: HTMLElement) {
+  return getIcon(container)?.querySelector('path');
 }
 
 beforeAll(() => defineMatchMedia());

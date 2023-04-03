@@ -6,34 +6,34 @@ const renderIconDark = createRender(ThemeIconDark);
 
 describe('<ThemeIconDark />', () => {
   it('renders a path for the dark icon', () => {
-    renderIconDark();
+    const { container } = renderIconDark();
 
-    expect(getIconPath()).toBeInTheDocument();
+    expect(getIconPath(container)).toBeInTheDocument();
   });
 
   it('renders with attribute viewBox to "-12 -12 24 24"', () => {
-    renderIconDark();
+    const { container } = renderIconDark();
 
-    expect(getIcon()).toHaveAttribute('viewBox', '-12 -12 24 24');
+    expect(getIcon(container)).toHaveAttribute('viewBox', '-12 -12 24 24');
   });
 
   it('renders with attribute data-theme to dark', () => {
-    renderIconDark();
+    const { container } = renderIconDark();
 
-    expect(getIcon()).toHaveAttribute('data-theme', 'dark');
+    expect(getIcon(container)).toHaveAttribute('data-theme', 'dark');
   });
 
   it('renders with attribute data-hidden to false when theme is dark', () => {
     localStorage.setItem(THEME_STORAGE_KEY, 'dark');
 
-    renderIconDark();
+    const { container } = renderIconDark();
 
-    expect(getIcon()).toHaveAttribute('data-hidden', 'false');
+    expect(getIcon(container)).toHaveAttribute('data-hidden', 'false');
   });
 
   it('renders with attribute data-hidden to true when theme is light', () => {
-    renderIconDark();
+    const { container } = renderIconDark();
 
-    expect(getIcon()).toHaveAttribute('data-hidden', 'true');
+    expect(getIcon(container)).toHaveAttribute('data-hidden', 'true');
   });
 });
