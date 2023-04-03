@@ -7,10 +7,9 @@ import {
   RenderHookResult,
   RenderOptions,
   RenderResult,
-  within,
 } from '@testing-library/react';
 import { useThemeContext, ThemeProvider } from '../src';
-import { Theme, ThemeStore } from '../src/types';
+import { ThemeStore } from '../src/types';
 import { ThemeProviderProps } from '../src/components/ThemeProvider';
 
 export const spyAddEventListener = jest.fn();
@@ -63,35 +62,15 @@ export function getButton() {
 }
 
 export function getIcon(hidden?: boolean) {
-  return screen.getByRole('img', { hidden });
+  return getIconPath(hidden).closest('svg');
 }
 
-export function getIconPath() {
-  return within(getIcon()).getByRole('presentation');
+export function getIconPath(hidden = true) {
+  return screen.getByRole('presentation', { hidden });
 }
 
-export function getAllIconPaths(hidden = true) {
-  return screen.getAllByRole('presentation', { hidden });
-}
-
-export function getIconPaths(index = 0, hidden?: boolean) {
-  return getAllIconPaths(hidden)[index];
-}
-
-export function getIconParent(theme: Theme, hidden?: boolean) {
-  const icon = getAllIconPaths(hidden).find(
-    (element) => element.parentElement?.dataset.theme === theme,
-  );
-
-  return icon === undefined ? null : icon.parentElement;
-}
-
-export function getIconDark(hidden?: boolean) {
-  return getIconParent('dark', hidden);
-}
-
-export function getIconLight(hidden?: boolean) {
-  return getIconParent('light', hidden);
+export function getImage() {
+  return screen.getByRole('img');
 }
 
 beforeAll(() => defineMatchMedia());
