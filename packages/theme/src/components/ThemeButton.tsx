@@ -1,37 +1,29 @@
 import * as React from 'react';
-import { useThemeContext } from '../';
+import { Label, Labelledby } from '../types';
 
-type ThemeButtonLabel = {
-  label: string;
-  labelledby?: never;
-};
-
-type ThemeButtonLabelledby = {
-  label?: never;
-  labelledby: string;
-};
-
-type ThemeButtonProps = React.HTMLProps<HTMLButtonElement> & {
+export type ThemeButtonProps = React.HTMLProps<HTMLButtonElement> & {
+  click: () => void;
+  pressed: boolean;
   title?: string;
-} & (ThemeButtonLabel | ThemeButtonLabelledby);
+} & (Label | Labelledby);
 
 export default function ThemeButton({
   children,
+  click,
   label,
   labelledby,
+  pressed,
   title,
   ...props
 }: ThemeButtonProps): JSX.Element {
-  const { theme, toggleTheme } = useThemeContext();
-
   return (
     <button
       {...props}
       aria-label={label}
       aria-labelledby={labelledby}
       aria-live="polite"
-      aria-pressed={theme === 'dark'}
-      onClick={toggleTheme}
+      aria-pressed={pressed}
+      onClick={click}
       title={title}
       type="button"
     >
