@@ -11,29 +11,26 @@ export type ThemeIconProps = React.SVGProps<SVGSVGElement> & {
 export default function ThemeIcon({
   children,
   description,
-  hidden,
   label,
   labelledby,
   title,
   viewBox,
   ...props
 }: ThemeIconProps): JSX.Element {
-  const defaultHidden =
+  const hidden =
     description === undefined &&
     title === undefined &&
     label === undefined &&
     labelledby === undefined;
 
-  const isHidden = hidden === undefined ? defaultHidden : hidden;
-
   return (
     <svg
       {...props}
-      aria-hidden={isHidden}
+      aria-hidden={hidden}
       aria-label={label}
       aria-labelledby={labelledby}
       focusable="false"
-      role={isHidden ? undefined : 'img'}
+      role={hidden ? 'presentation' : 'img'}
       viewBox={viewBox}
     >
       {title ? <title>{title}</title> : null}
