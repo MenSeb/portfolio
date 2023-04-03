@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useThemeContext } from '../';
-import { ThemeButton } from '.';
-import { ThemeButtonProps } from '../types';
+import ThemeButton, { ThemeButtonProps } from './ThemeButton';
 
 export type ThemeButtonLightProps = Partial<ThemeButtonProps>;
 
