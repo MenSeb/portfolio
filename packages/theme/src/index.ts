@@ -1,2 +1,9 @@
-export * from './components';
-export { default as useThemeContext } from './hooks';
+export { useThemeContext } from './hook';
+export {
+  ThemeButtonDark,
+  ThemeButtonLight,
+  ThemeButtonToggle,
+  ThemeIconDark,
+  ThemeIconLight,
+  ThemeProvider,
+} from './components';

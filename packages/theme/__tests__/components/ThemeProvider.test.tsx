@@ -1,36 +1,13 @@
-import { act, renderHook } from '@testing-library/react';
-import { useThemeContext } from '../src';
+import { act } from '@testing-library/react';
+import { THEME_QUERY_DARK, THEME_STORAGE_KEY } from '../../src/constants';
 import {
-  THEME_CONTEXT_ERROR,
-  THEME_QUERY_DARK,
-  THEME_STORAGE_KEY,
-} from '../src/constants';
-import {
-  defineMatchMedia,
   mockMatchMedia,
   renderThemeHook,
   spyAddEventListener,
   spyRemoveEventListener,
-} from '.';
+} from '..';
 
-describe('Context Theme', () => {
-  beforeAll(() => defineMatchMedia());
-  beforeEach(() => localStorage.clear());
-  afterEach(() => {
-    spyAddEventListener.mockReset();
-    spyRemoveEventListener.mockReset();
-  });
-
-  it('throws when used without theme provider', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation();
-
-    expect(() => {
-      renderHook(() => useThemeContext());
-    }).toThrow(THEME_CONTEXT_ERROR);
-
-    spy.mockRestore();
-  });
-
+describe('<ThemeProvider />', () => {
   it('loads the theme in local storage', () => {
     localStorage.setItem(THEME_STORAGE_KEY, 'dark');
 
@@ -52,27 +29,29 @@ describe('Context Theme', () => {
   it('renders with the default theme', () => {
     const { result } = renderThemeHook();
 
-    expect(result.current.theme).toEqual('light');
+    expect(result.current.theme).toBe('light');
   });
 
   it('renders with a function to toggle between themes', () => {
     const { result } = renderThemeHook();
 
-    expect(result.current.theme).toEqual('light');
+    expect(result.current.theme).toBe('light');
 
     act(() => result.current.toggleTheme());
 
-    expect(result.current.theme).toEqual('dark');
+    expect(result.current.theme).toBe('dark');
 
     act(() => result.current.toggleTheme());
 
-    expect(result.current.theme).toEqual('light');
+    expect(result.current.theme).toBe('light');
   });
 
   it('saves the theme in local storage on the initial render', () => {
+    expect(localStorage.getItem(THEME_STORAGE_KEY)).toBeNull();
+
     renderThemeHook();
 
-    expect(localStorage.getItem(THEME_STORAGE_KEY)).toEqual('light');
+    expect(localStorage.getItem(THEME_STORAGE_KEY)).toBe('light');
   });
 
   it('saves the theme in local storage on theme toggle', () => {
@@ -80,7 +59,7 @@ describe('Context Theme', () => {
 
     act(() => result.current.toggleTheme());
 
-    expect(localStorage.getItem(THEME_STORAGE_KEY)).toEqual('dark');
+    expect(localStorage.getItem(THEME_STORAGE_KEY)).toBe('dark');
   });
 
   it('listens to the user color scheme change event', () => {

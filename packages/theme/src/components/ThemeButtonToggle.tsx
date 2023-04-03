@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { useThemeContext } from '../';
 
-export default function ThemeButton({
+export default function ThemeButtonToggle({
   children,
   ...props
-}: React.PropsWithChildren): JSX.Element {
+}: React.HTMLProps<HTMLButtonElement>): JSX.Element {
   const { theme, toggleTheme } = useThemeContext();
 
   return (
     <button
       {...props}
-      aria-label={theme}
-      aria-live="polite"
+      aria-pressed={theme === 'dark'}
+      data-theme={theme}
       onClick={toggleTheme}
-      title="Toggle light and dark theme"
+      type="button"
     >
       {children}
     </button>
