@@ -1,35 +1,44 @@
 import * as React from 'react';
-import { useThemeContext } from '../';
+import { Label, Labelledby } from '../types';
 
-export default function ThemeIcon({ ...props }): JSX.Element {
-  const { theme } = useThemeContext();
+export type ThemeIconProps = React.SVGProps<SVGSVGElement> & {
+  description?: string;
+  hidden?: boolean;
+  title?: string;
+  viewBox: string;
+} & (Label | Labelledby);
+
+export default function ThemeIcon({
+  children,
+  description,
+  hidden,
+  label,
+  labelledby,
+  title,
+  viewBox,
+  ...props
+}: ThemeIconProps): JSX.Element {
+  const defaultHidden =
+    description === undefined &&
+    title === undefined &&
+    label === undefined &&
+    labelledby === undefined;
+
+  const isHidden = hidden === undefined ? defaultHidden : hidden;
 
   return (
-    <svg {...props} aria-hidden="true" viewBox="-12 -12 24 24">
-      <defs>
-        <path
-          id="light"
-          d="M-10 0 
-          A 5 5 0 0 0 -7 -7 
-          A 5 5 0 0 0 0 -10 
-          A 5 5 0 0 0 7 -7 
-          A 5 5 0 0 0 10 0 
-          A 5 5 0 0 0 7 7 
-          A 5 5 0 0 0 0 10 
-          A 5 5 0 0 0 -7 7 
-          A 5 5 0 0 0 -10 0 z
-          M-6 0 a 6 6 0 0 0 12 0 a 6 6 0 0 0 -12 0 z
-          M-5 0 a 5 5 0 0 0 10 0 a 5 5 0 0 0 -10 0 z"
-        />
-        <path
-          id="dark"
-          d="M0 -8 
-          A 8 8 0 0 0 0 8 
-          A 8 8 0 0 0 8 0 
-          A 6 6 0 1 1 0 -8 z"
-        />
-      </defs>
-      <use xlinkHref={`#${theme}`} />
+    <svg
+      {...props}
+      aria-hidden={isHidden}
+      aria-label={label}
+      aria-labelledby={labelledby}
+      focusable="false"
+      role={isHidden ? undefined : 'img'}
+      viewBox={viewBox}
+    >
+      {title ? <title>{title}</title> : null}
+      {description ? <desc>{description}</desc> : null}
+      {children}
     </svg>
   );
 }
