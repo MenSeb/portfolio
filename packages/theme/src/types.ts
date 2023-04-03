@@ -1,6 +1,9 @@
 export type Theme = 'light' | 'dark';
 
 export type ThemeStore = {
+  defaultTheme: Theme;
+  setThemeDark: () => void;
+  setThemeLight: () => void;
   theme: Theme;
   toggleTheme: () => void;
 };
