@@ -1,11 +1,11 @@
 import { act } from '@testing-library/react';
-import { THEME_QUERY_DARK, THEME_STORAGE_KEY } from '../../src/constants';
 import {
   mockMatchMedia,
-  renderThemeHook,
   spyAddEventListener,
   spyRemoveEventListener,
-} from '..';
+} from '../../../../jest.setup';
+import { THEME_QUERY_DARK, THEME_STORAGE_KEY } from '../../src/constants';
+import { renderThemeHook } from '..';
 
 describe('<ThemeProvider />', () => {
   it('loads the theme in local storage', () => {
