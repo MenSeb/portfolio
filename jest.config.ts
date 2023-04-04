@@ -1,6 +1,9 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 export default {
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+  setupFilesAfterEnv: [
+    '@testing-library/jest-dom/extend-expect',
+    '../../jest.setup.ts',
+  ],
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['^(.(?!\\.test\\.))*$'],
   transform: { '\\.[jt]sx?$': 'ts-jest' },
