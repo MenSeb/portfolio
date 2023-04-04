@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { screen, render } from '@testing-library/react';
+import { act, screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   MemoryRouter,
@@ -63,7 +63,9 @@ describe('<App />', () => {
     it('renders with about page', async () => {
       const user = userEvent.setup();
 
-      await user.click(screen.getByText(/about/i));
+      await act(async () => {
+        await user.click(screen.getByText(/about/i));
+      });
 
       expect(
         screen.getByRole('region', { name: 'about page' }),
